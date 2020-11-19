@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{margin:0; padding:0; box-sizing: border-box;}
-        ul{list-style: none;}
-        a{text-decoration: none;}
-        .claerfix::after {content: ""; display: block; clear: both;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .claerfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
         #header {
             width: 100%;
             height: 100px;
@@ -17,56 +34,66 @@
             position: fixed;
             z-index: 999;
         }
+
         #header nav {
             width: 1200px;
             margin: 0 auto;
         }
+
         #header nav .menu {
             float: right;
         }
-        #header nav .menu li{
+
+        #header nav .menu li {
             float: left;
             margin: 0 30px;
             text-align: center;
             line-height: 100px;
         }
-        #header nav .menu li a{
+
+        #header nav .menu li a {
             display: block;
-            color:#fff;
+            color: #fff;
         }
-        #header nav .menu li.on a{
+
+        #header nav .menu li.on a {
             font-weight: bold;
         }
-        #contents div{
+
+        #contents div {
             width: 100%;
             height: 100vh;
             position: relative;
-        } 
-        #contents div h1{
+        }
+
+        #contents div h1 {
             position: absolute;
-            top:50%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color:#fff;
-            font-size:6rem;
+            color: #fff;
+            font-size: 6rem;
 
         }
-        #contents #home{
-            background:linear-gradient(45deg, #f44336,#2196f3);
-        }
-        #contents #about{
-            background:linear-gradient(45deg, #f5af19,#f12711);
-        }
-        #contents #Seryice{
-            background:linear-gradient(45deg, #5D26c1,#59c173);
-        }
-        #contents #contact{
-            background:linear-gradient(45deg, #89fffd,#ef32d9);
+
+        #contents #home {
+            background: linear-gradient(45deg, #f44336, #2196f3);
         }
 
-        
+        #contents #about {
+            background: linear-gradient(45deg, #f5af19, #f12711);
+        }
+
+        #contents #Seryice {
+            background: linear-gradient(45deg, #5D26c1, #59c173);
+        }
+
+        #contents #contact {
+            background: linear-gradient(45deg, #89fffd, #ef32d9);
+        }
     </style>
 </head>
+
 <body>
     <header id="header">
         <nav>
@@ -95,11 +122,11 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        $(function(){
+        $(function () {
             var $menu = $('.menu li'),
                 $contents = $('#contents > div');
 
-            $menu.click(function(e){
+            $menu.click(function (e) {
                 e.preventDefault();//a태그 특성 무효화
 
                 // $(this).addClass('on').siblings().removeClass('on');
@@ -108,26 +135,27 @@
                 var section = $contents.eq(idx);//내가 지금 클릭한 li번째랑 같은 번쨰의 div 
                 var sectionDistance = section.offset().top;
 
-                $('html,body').stop().animate({scrollTop:sectionDistance});
+                $('html,body').stop().animate({ scrollTop: sectionDistance });
             });
 
-            $(window).scroll(function(){
-                $contents.each(function(){
+            $(window).scroll(function () {
+                $contents.each(function () {
                     $(this).offset().top //div가 위에서 얼마나 떨어져 있는지에 대한 값
                     $(window).scrollTop()//지금보아는 화면이 위에서 얼마나 떨어져있는지에 대한 값 
 
-                    if($(this).offset().top <= $(window).scrollTop()){
+                    if ($(this).offset().top <= $(window).scrollTop()) {
                         // 현재 스크롤 위치가 contents안의 각각의 div의 높이보다 크거나 같을때
                         var idx = $(this).index();
                         // 그 위치에 해당되는 div가 몇번째인지 확인해서
-                    $menu.removeClass('on');
-                    $menu.eq(idx).addClass('on');
-                    //div의 번째수랑 같은 li의 번째수의 클래스에 on을 추가해줌
+                        $menu.removeClass('on');
+                        $menu.eq(idx).addClass('on');
+                        //div의 번째수랑 같은 li의 번째수의 클래스에 on을 추가해줌
                     }
                 });
             });
-        
+
         });
     </script>
 </body>
+
 </html>
